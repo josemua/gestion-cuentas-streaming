@@ -161,6 +161,9 @@ El sistema crea automáticamente el directorio si no existe.
 - El monto del pago debe ser positivo
 - Se registra automáticamente la fecha de pago
 
+### Demo
+
+- https://www.youtube.com/watch?v=kuXkRzUmq5g
 
 ## 📝 Licencia
 
