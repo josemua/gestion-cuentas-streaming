@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.josemuadev.trabajofinal.controller.PrincipalController"
+            style="-fx-background-color: #f5f5f5;">
+
+    <top>
+        <VBox style="-fx-background-color: #2c3e50; -fx-padding: 20;">
+            <Label text="Sistema de Gestión de Cuentas de Streaming"
+                   style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;"/>
+            <Label text="Administra tus cuentas, espacios y pagos"
+                   style="-fx-text-fill: #bdc3c7; -fx-font-size: 14px;"/>
+        </VBox>
+    </top>
+
+    <left>
+        <VBox spacing="10" style="-fx-background-color: #34495e; -fx-padding: 20; -fx-pref-width: 200;">
+            <Label text="MENÚ" style="-fx-text-fill: #ecf0f1; -fx-font-weight: bold; -fx-font-size: 12px;"/>
+
+            <Button fx:id="btnHome" text="🏠 Home" onAction="#volverAlDashboard"
+                    prefWidth="160" style="-fx-background-color: #16a085; -fx-text-fill: white; -fx-cursor: hand;"/>
+
+            <Separator style="-fx-background-color: #7f8c8d;"/>
+
+            <Button fx:id="btnClientes" text="👥 Clientes" onAction="#mostrarClientes"
+                    prefWidth="160" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-cursor: hand;"/>
+
+            <Button fx:id="btnPlataformas" text="📺 Plataformas" onAction="#mostrarPlataformas"
+                    prefWidth="160" style="-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-cursor: hand;"/>
+
+            <Button fx:id="btnCuentas" text="📧 Cuentas" onAction="#mostrarCuentas"
+                    prefWidth="160" style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-cursor: hand;"/>
+
+            <Button fx:id="btnEspacios" text="🎯 Espacios" onAction="#mostrarEspacios"
+                    prefWidth="160" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-cursor: hand;"/>
+
+            <Button fx:id="btnPagos" text="💰 Pagos" onAction="#mostrarPagos"
+                    prefWidth="160" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-cursor: hand;"/>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <Separator/>
+
+            <Button text="💾 Guardar Datos" onAction="#guardarDatos"
+                    prefWidth="160" style="-fx-background-color: #1abc9c; -fx-text-fill: white; -fx-cursor: hand;"/>
+
+            <Button text="📊 Cargar Ejemplo" onAction="#cargarEjemplo"
+                    prefWidth="160" style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-cursor: hand;"/>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane fx:id="contenedorPrincipal" style="-fx-padding: 20;">
+            <VBox alignment="CENTER" spacing="20">
+                <Label text="¡Bienvenido!" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <Label text="Selecciona una opción del menú para comenzar"
+                       style="-fx-font-size: 16px; -fx-text-fill: #7f8c8d;"/>
+
+                <HBox spacing="20" alignment="CENTER">
+                    <VBox fx:id="statClientes" alignment="CENTER" spacing="5"
+                          onMouseClicked="#clickCajitaClientes"
+                          style="-fx-background-color: #3498db; -fx-padding: 20; -fx-background-radius: 10; -fx-cursor: hand;">
+                        <Label fx:id="lblTotalClientes" text="0" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                        <Label text="Clientes" style="-fx-text-fill: white;"/>
+                    </VBox>
+
+                    <VBox fx:id="statCuentas" alignment="CENTER" spacing="5"
+                          onMouseClicked="#clickCajitaCuentas"
+                          style="-fx-background-color: #e67e22; -fx-padding: 20; -fx-background-radius: 10; -fx-cursor: hand;">
+                        <Label fx:id="lblTotalCuentas" text="0" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                        <Label text="Cuentas" style="-fx-text-fill: white;"/>
+                    </VBox>
+
+                    <VBox fx:id="statEspacios" alignment="CENTER" spacing="5"
+                          onMouseClicked="#clickCajitaEspacios"
+                          style="-fx-background-color: #27ae60; -fx-padding: 20; -fx-background-radius: 10; -fx-cursor: hand;">
+                        <Label fx:id="lblTotalEspacios" text="0" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                        <Label text="Espacios" style="-fx-text-fill: white;"/>
+                    </VBox>
+
+                    <VBox fx:id="statDeuda" alignment="CENTER" spacing="5"
+                          onMouseClicked="#clickCajitaPagos"
+                          style="-fx-background-color: #e74c3c; -fx-padding: 20; -fx-background-radius: 10; -fx-cursor: hand;">
+                        <Label fx:id="lblDeudaTotal" text="0" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                        <Label text="Deuda Total" style="-fx-text-fill: white;"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </StackPane>
+    </center>
+
+    <bottom>
+        <HBox style="-fx-background-color: #2c3e50; -fx-padding: 10;">
+            <Label fx:id="lblEstado" text="Sistema listo" style="-fx-text-fill: #bdc3c7;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="Técnicas de Programación - UdeA 2025" style="-fx-text-fill: #7f8c8d;"/>
+        </HBox>
+    </bottom>
+</BorderPane>

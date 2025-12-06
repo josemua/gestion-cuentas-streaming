@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.josemuadev.trabajofinal.controller.ClientesController"
+      spacing="15" style="-fx-padding: 20;">
+
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="👥 Gestión de Clientes" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="➕ Nuevo Cliente" onAction="#nuevoCliente"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-cursor: hand;"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Buscar:"/>
+        <TextField fx:id="txtBuscar" promptText="Nombre o teléfono..." prefWidth="300" onKeyReleased="#buscar"/>
+        <Button text="🔍 Buscar" onAction="#buscar" style="-fx-cursor: hand;"/>
+        <Button text="🔄 Limpiar" onAction="#limpiarBusqueda" style="-fx-cursor: hand;"/>
+    </HBox>
+
+    <TableView fx:id="tablaClientes" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="80">
+                <cellValueFactory><PropertyValueFactory property="id"/></cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colNombre" text="Nombre" prefWidth="200">
+                <cellValueFactory><PropertyValueFactory property="nombre"/></cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colTelefono" text="Teléfono" prefWidth="150">
+                <cellValueFactory><PropertyValueFactory property="telefono"/></cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colNotas" text="Notas" prefWidth="200">
+                <cellValueFactory><PropertyValueFactory property="notas"/></cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colEspacios" text="Espacios" prefWidth="80"/>
+        </columns>
+        <placeholder>
+            <Label text="No hay clientes registrados"/>
+        </placeholder>
+    </TableView>
+
+    <TitledPane fx:id="panelEdicion" text="Datos del Cliente" expanded="false">
+        <GridPane hgap="10" vgap="10" style="-fx-padding: 15;">
+            <Label text="Nombre:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="txtNombre" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Teléfono:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="txtTelefono" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="Notas:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextArea fx:id="txtNotas" prefWidth="250" prefHeight="60" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+            <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <Button fx:id="btnGuardar" text="💾 Guardar" onAction="#guardarCliente"
+                        style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-cursor: hand;"/>
+                <Button text="❌ Cancelar" onAction="#cancelarEdicion"
+                        style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-cursor: hand;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnEliminar" text="🗑 Eliminar" onAction="#eliminarCliente"
+                        style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-cursor: hand;" visible="false"/>
+            </HBox>
+        </GridPane>
+    </TitledPane>
+
+    <Label fx:id="lblMensaje" style="-fx-text-fill: #27ae60;"/>
+</VBox>

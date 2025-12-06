@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.josemuadev.trabajofinal.controller.EspaciosController"
+      spacing="15" style="-fx-padding: 20;">
+
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="🎯 Gestión de Espacios Compartidos" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="➕ Nuevo Espacio" onAction="#nuevoEspacio"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-cursor: hand;"/>
+    </HBox>
+
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Label text="Filtrar por:"/>
+        <ComboBox fx:id="cmbFiltroCliente" prefWidth="180" promptText="Cliente..." onAction="#filtrar"/>
+        <ComboBox fx:id="cmbFiltroCuenta" prefWidth="220" promptText="Cuenta..." onAction="#filtrar"/>
+        <Button text="🔄 Limpiar" onAction="#limpiarFiltros" style="-fx-cursor: hand;"/>
+    </HBox>
+
+    <TableView fx:id="tablaEspacios" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="80">
+                <cellValueFactory><PropertyValueFactory property="id"/></cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colCliente" text="Cliente" prefWidth="150"/>
+            <TableColumn fx:id="colCuenta" text="Cuenta" prefWidth="180"/>
+            <TableColumn fx:id="colPlataforma" text="Plataforma" prefWidth="100"/>
+            <TableColumn fx:id="colPrecio" text="Precio/Mes" prefWidth="100"/>
+            <TableColumn fx:id="colFecha" text="Fecha Inicio" prefWidth="100"/>
+            <TableColumn fx:id="colDeuda" text="Deuda" prefWidth="80"/>
+        </columns>
+        <placeholder>
+            <Label text="No hay espacios registrados"/>
+        </placeholder>
+    </TableView>
+
+    <TitledPane fx:id="panelEdicion" text="Datos del Espacio" expanded="false">
+        <GridPane hgap="10" vgap="10" style="-fx-padding: 15;">
+            <Label text="Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <ComboBox fx:id="cmbCliente" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Cuenta:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <ComboBox fx:id="cmbCuenta" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="Precio Mensual:" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+            <TextField fx:id="txtPrecio" prefWidth="150" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+            <Label text="Notas:" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+            <TextArea fx:id="txtNotas" prefWidth="150" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+            <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.columnSpan="3">
+                <Button fx:id="btnGuardar" text="💾 Guardar" onAction="#guardarEspacio"
+                        style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-cursor: hand;"/>
+                <Button text="❌ Cancelar" onAction="#cancelarEdicion"
+                        style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-cursor: hand;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnEliminar" text="🗑 Eliminar" onAction="#eliminarEspacio"
+                        style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-cursor: hand;" visible="false"/>
+            </HBox>
+        </GridPane>
+    </TitledPane>
+
+    <Label fx:id="lblMensaje" style="-fx-text-fill: #27ae60;"/>
+</VBox>

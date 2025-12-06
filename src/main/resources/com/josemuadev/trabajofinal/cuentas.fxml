@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.josemuadev.trabajofinal.controller.CuentasController"
+      spacing="15" style="-fx-padding: 20;">
+
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="📧 Gestión de Cuentas de Streaming" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="➕ Nueva Cuenta" onAction="#nuevaCuenta"
+                style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-cursor: hand;"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Filtrar por plataforma:"/>
+        <ComboBox fx:id="cmbFiltroPlataforma" prefWidth="200" onAction="#filtrarPorPlataforma"/>
+        <Button text="🔄 Mostrar Todas" onAction="#mostrarTodas" style="-fx-cursor: hand;"/>
+    </HBox>
+
+    <TableView fx:id="tablaCuentas" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="80">
+                <cellValueFactory><PropertyValueFactory property="id"/></cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colEmail" text="Email" prefWidth="200">
+                <cellValueFactory><PropertyValueFactory property="email"/></cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colPlataforma" text="Plataforma" prefWidth="120"/>
+            <TableColumn fx:id="colPlan" text="Plan" prefWidth="100">
+                <cellValueFactory><PropertyValueFactory property="plan"/></cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colEspacios" text="Espacios" prefWidth="100"/>
+            <TableColumn fx:id="colNotas" text="Notas" prefWidth="150">
+                <cellValueFactory><PropertyValueFactory property="notas"/></cellValueFactory>
+            </TableColumn>
+        </columns>
+        <placeholder>
+            <Label text="No hay cuentas registradas"/>
+        </placeholder>
+    </TableView>
+
+    <TitledPane fx:id="panelEdicion" text="Datos de la Cuenta" expanded="false">
+        <GridPane hgap="10" vgap="10" style="-fx-padding: 15;">
+            <Label text="Plataforma:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <ComboBox fx:id="cmbPlataforma" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="txtEmail" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="Contraseña:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="txtPassword" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+            <Label text="Plan:" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+            <TextField fx:id="txtPlan" prefWidth="150" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+            <Label text="Max Espacios:" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+            <Spinner fx:id="spnMaxEspacios" prefWidth="150" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+            <Label text="Notas:" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+            <TextArea fx:id="txtNotas" prefWidth="150" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+
+            <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.columnSpan="3">
+                <Button fx:id="btnGuardar" text="💾 Guardar" onAction="#guardarCuenta"
+                        style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-cursor: hand;"/>
+                <Button text="❌ Cancelar" onAction="#cancelarEdicion"
+                        style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-cursor: hand;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnEliminar" text="🗑 Eliminar" onAction="#eliminarCuenta"
+                        style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-cursor: hand;" visible="false"/>
+            </HBox>
+        </GridPane>
+    </TitledPane>
+
+    <Label fx:id="lblMensaje" style="-fx-text-fill: #27ae60;"/>
+</VBox>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.josemuadev.trabajofinal.controller.PagosController"
+      spacing="15" style="-fx-padding: 20;">
+
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="💰 Gestión de Pagos" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="📅 Generar Pagos del Mes" onAction="#generarPagosMensuales"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-cursor: hand;"/>
+    </HBox>
+
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <VBox style="-fx-background-color: #e74c3c; -fx-padding: 15; -fx-background-radius: 8;">
+            <Label text="Deuda Total" style="-fx-text-fill: white; -fx-font-size: 12px;"/>
+            <Label fx:id="lblDeudaTotal" text="0" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;"/>
+        </VBox>
+        <VBox style="-fx-background-color: #27ae60; -fx-padding: 15; -fx-background-radius: 8;">
+            <Label text="Pagos Pendientes" style="-fx-text-fill: white; -fx-font-size: 12px;"/>
+            <Label fx:id="lblPagosPendientes" text="0" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;"/>
+        </VBox>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Filtrar por espacio:"/>
+        <ComboBox fx:id="cmbFiltroEspacio" prefWidth="300" onAction="#filtrarPorEspacio"/>
+        <CheckBox fx:id="chkSoloPendientes" text="Solo pendientes" onAction="#filtrar"/>
+        <Button text="🔄 Limpiar" onAction="#limpiarFiltro" style="-fx-cursor: hand;"/>
+    </HBox>
+
+    <TableView fx:id="tablaPagos" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colMes" text="Mes" prefWidth="100"/>
+            <TableColumn fx:id="colCliente" text="Cliente" prefWidth="150"/>
+            <TableColumn fx:id="colCuenta" text="Cuenta" prefWidth="180"/>
+            <TableColumn fx:id="colMonto" text="Monto" prefWidth="100"/>
+            <TableColumn fx:id="colEstado" text="Estado" prefWidth="100"/>
+            <TableColumn fx:id="colFechaPago" text="Fecha Pago" prefWidth="120"/>
+            <TableColumn fx:id="colAcciones" text="Acciones" prefWidth="100"/>
+        </columns>
+        <placeholder>
+            <Label text="No hay pagos registrados"/>
+        </placeholder>
+    </TableView>
+
+    <TitledPane fx:id="panelNuevoPago" text="Registrar Nuevo Pago" expanded="false">
+        <GridPane hgap="10" vgap="10" style="-fx-padding: 15;">
+            <Label text="Espacio:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <ComboBox fx:id="cmbEspacio" prefWidth="300" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Mes (YYYY-MM):" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="txtMes" prefWidth="150" promptText="2025-12" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="Monto:" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+            <TextField fx:id="txtMonto" prefWidth="150" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+            <Label text="Estado:" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+            <CheckBox fx:id="chkPagado" text="Pagado" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+            <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.columnSpan="3">
+                <Button text="💾 Registrar Pago" onAction="#registrarPago"
+                        style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-cursor: hand;"/>
+                <Button text="❌ Cancelar" onAction="#cancelar"
+                        style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-cursor: hand;"/>
+            </HBox>
+        </GridPane>
+    </TitledPane>
+
+    <Label fx:id="lblMensaje" style="-fx-text-fill: #27ae60;"/>
+</VBox>

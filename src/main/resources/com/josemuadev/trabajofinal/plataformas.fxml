@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.josemuadev.trabajofinal.controller.PlataformasController"
+      spacing="15" style="-fx-padding: 20;">
+
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="📺 Gestión de Plataformas" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="➕ Nueva Plataforma" onAction="#nuevaPlataforma"
+                style="-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-cursor: hand;"/>
+    </HBox>
+
+    <TableView fx:id="tablaPlataformas" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="100">
+                <cellValueFactory><PropertyValueFactory property="id"/></cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colNombre" text="Nombre" prefWidth="200">
+                <cellValueFactory><PropertyValueFactory property="nombre"/></cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colNotas" text="Notas" prefWidth="250">
+                <cellValueFactory><PropertyValueFactory property="notas"/></cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colCuentas" text="Cuentas" prefWidth="100"/>
+        </columns>
+        <placeholder>
+            <Label text="No hay plataformas registradas"/>
+        </placeholder>
+    </TableView>
+
+    <TitledPane fx:id="panelEdicion" text="Datos de la Plataforma" expanded="false">
+        <GridPane hgap="10" vgap="10" style="-fx-padding: 15;">
+            <Label text="Nombre:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="txtNombre" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Notas:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextArea fx:id="txtNotas" prefWidth="250" prefHeight="60" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <Button fx:id="btnGuardar" text="💾 Guardar" onAction="#guardarPlataforma"
+                        style="-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-cursor: hand;"/>
+                <Button text="❌ Cancelar" onAction="#cancelarEdicion"
+                        style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-cursor: hand;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnEliminar" text="🗑 Eliminar" onAction="#eliminarPlataforma"
+                        style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-cursor: hand;" visible="false"/>
+            </HBox>
+        </GridPane>
+    </TitledPane>
+
+    <Label fx:id="lblMensaje" style="-fx-text-fill: #27ae60;"/>
+</VBox>
