@@ -91,9 +91,12 @@ public class GestorPrincipal {
 
         for (CuentaStreaming cuenta : cuentas) {
             if (cuenta.getPlataforma() != null) {
-                PlataformaStreaming plataforma = cuenta.getPlataforma();
-                if (!plataforma.getCuentas().contains(cuenta)) {
-                    plataforma.getCuentas().add(cuenta);
+                PlataformaStreaming plataformaCorrecta = adminPlataformas.buscarPlataformaPorId(cuenta.getPlataforma().getId());
+                if (plataformaCorrecta != null) {
+                    cuenta.setPlataforma(plataformaCorrecta);
+                    if (!plataformaCorrecta.getCuentas().contains(cuenta)) {
+                        plataformaCorrecta.getCuentas().add(cuenta);
+                    }
                 }
             }
         }
@@ -111,16 +114,22 @@ public class GestorPrincipal {
 
         for (EspacioCompartido espacio : espacios) {
             if (espacio.getCuenta() != null) {
-                CuentaStreaming cuenta = espacio.getCuenta();
-                if (!cuenta.getEspacios().contains(espacio)) {
-                    cuenta.getEspacios().add(espacio);
+                CuentaStreaming cuentaCorrecta = adminCuentas.buscarCuentaPorId(espacio.getCuenta().getId());
+                if (cuentaCorrecta != null) {
+                    espacio.setCuenta(cuentaCorrecta);
+                    if (!cuentaCorrecta.getEspacios().contains(espacio)) {
+                        cuentaCorrecta.getEspacios().add(espacio);
+                    }
                 }
             }
 
             if (espacio.getCliente() != null) {
-                Cliente cliente = espacio.getCliente();
-                if (!cliente.getEspacios().contains(espacio)) {
-                    cliente.getEspacios().add(espacio);
+                Cliente clienteCorrecto = adminClientes.buscarClientePorId(espacio.getCliente().getId());
+                if (clienteCorrecto != null) {
+                    espacio.setCliente(clienteCorrecto);
+                    if (!clienteCorrecto.getEspacios().contains(espacio)) {
+                        clienteCorrecto.getEspacios().add(espacio);
+                    }
                 }
             }
 

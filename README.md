@@ -81,7 +81,7 @@ src/main/resources/com/josemuadev/trabajofinal/   # Interfaz gráfica construida
 
 ```bash
 # Navegar al directorio del proyecto
-cd trabajo-final
+cd gestion-cuentas-streaming
 
 # Compilar y ejecutar con Maven Wrapper (Recomendado)
 ./mvnw clean javafx:run
@@ -97,10 +97,10 @@ mvn clean javafx:run
 ./mvnw clean package
 
 # Ejecutar el JAR generado (requiere las dependencias en target/libs)
-java -cp "target/trabajo-final-1.0.0.jar;target/libs/*" com.josemuadev.trabajofinal.App
+java -cp "target/gestion-cuentas-streaming-1.0.0.jar;target/libs/*" com.josemuadev.trabajofinal.App
 
 # En Linux/Mac usar : en lugar de ;
-java -cp "target/trabajo-final-1.0.0.jar:target/libs/*" com.josemuadev.trabajofinal.App
+java -cp "target/gestion-cuentas-streaming-1.0.0.jar:target/libs/*" com.josemuadev.trabajofinal.App
 ```
 
 ### Generar Ejecutable para Windows (.exe)
@@ -110,19 +110,10 @@ java -cp "target/trabajo-final-1.0.0.jar:target/libs/*" com.josemuadev.trabajofi
 ./mvnw clean package
 
 # El proyecto incluye un `pom.xml` configurado para generar un instalador mediante **jpackage**.
-cp target/trabajo-final-1.0.0.jar target/libs/
+cp target/gestion-cuentas-streaming-1.0.0.jar target/libs/
 
 # 3. Generar ejecutable con jpackage (incluido en JDK 14+)
-jpackage --input target/libs \
-  --name "StreamingManager" \
-  --main-jar trabajo-final-1.0.0.jar \
-  --main-class com.josemuadev.trabajofinal.App \
-  --type app-image \
-  --dest target/dist \
-  --app-version 1.0.0 \
-  --vendor JoseMuADev \
-  --module-path target/libs \
-  --add-modules javafx.controls,javafx.fxml
+jpackage --input target/libs --name "StreamingManager" --main-jar trabajo-final-1.0.0.jar --main-class com.josemuadev.trabajofinal.App --type app-image --dest target/dist --app-version 1.0.0 --vendor JoseMuADev --module-path target/libs --add-modules javafx.controls,javafx.fxml
 
 # El ejecutable estará en: target/dist/StreamingManager/StreamingManager.exe
 ```
